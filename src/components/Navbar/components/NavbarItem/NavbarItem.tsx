@@ -1,3 +1,5 @@
+'use client'
+
 import Icon from "@/components/Icon";
 import Styles from "./NavbarItem.module.scss";
 import { NavbarItemProps } from "./NavbarItem.types";

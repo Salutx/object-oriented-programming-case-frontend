@@ -1,0 +1,47 @@
+.Navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #e6e5eb;
+  box-shadow: 0px 4px 7.3px -1px rgba(0, 0, 0, 0.02);
+  background-color: #ffffff;
+}
+
+.NavbarSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.NavbarLogo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.NavbarLogo_Brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.NavbarLogo_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.NavbarLogo_Copyright {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

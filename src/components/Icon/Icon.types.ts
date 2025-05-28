@@ -11,7 +11,10 @@ export type IconName =
   | "next"
   | "trash-can"
   | "vercel"
-  | "window";
+  | "window"
+  | "checkmark"
+  | "search"
+  | "add";
 
 export interface IconProps {
   name: IconName;

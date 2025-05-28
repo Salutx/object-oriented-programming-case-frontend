@@ -1,0 +1,27 @@
+.NavbarItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.NavbarItem_Active {
+  border-bottom: 1px solid #5a62e6;
+  opacity: 1;
+}
+
+.NavbarItem_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}

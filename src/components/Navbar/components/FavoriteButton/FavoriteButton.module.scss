@@ -1,0 +1,15 @@
+.FavoriteButton {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.FavoriteButton_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}

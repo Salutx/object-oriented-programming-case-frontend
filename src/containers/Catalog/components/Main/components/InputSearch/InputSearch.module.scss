@@ -1,0 +1,33 @@
+.InputSearch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 128px;
+  border: 1px solid #cfced7;
+  background: #fff;
+  height: 40px;
+  padding-right: 16px;
+}
+
+.InputSearch__Input {
+  height: 100%;
+  width: 100%;
+  padding-left: 16px;
+
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+
+  &::placeholder {
+    color: #7a7a89;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    opacity: 0.4;
+  }
+}

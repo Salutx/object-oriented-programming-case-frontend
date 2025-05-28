@@ -1,0 +1,46 @@
+.CategoryOption {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.CategoryOption__Side {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.CategoryOption_Label {
+  overflow: hidden;
+  color: #9d9da6;
+  text-overflow: ellipsis;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  pointer-events: none;
+}
+
+.CategoryOption_Quantity {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  opacity: 0.3;
+  flex-shrink: 0;
+  white-space: nowrap;
+}

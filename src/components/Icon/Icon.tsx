@@ -4,7 +4,7 @@ import { IconProps } from "./Icon.types";
 const Icon = ({ name, size = 16 }: IconProps) => {
   return (
     <Image
-      src={`/public/${name}.svg`}
+      src={`/${name}.svg`}
       alt={name}
       width={size}
       height={size}

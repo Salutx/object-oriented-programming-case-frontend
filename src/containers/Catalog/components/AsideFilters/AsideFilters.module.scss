@@ -1,0 +1,136 @@
+.AsideFilters {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #ffffff;
+  border-right: 1px solid #ebebeb;
+  overflow: hidden;
+  padding: 2rem;
+  height: 100%;
+}
+
+.AsideFilters_Header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.AsideFilters__Header_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.44px;
+}
+
+.AsideSection {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.AsideSection__Header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.AsideSection__Header_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  opacity: 0.7;
+}
+
+.AsideSection__Content {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 0 0 2px;
+  overflow-y: auto;
+}
+
+.AsideDivider {
+  width: 100%;
+  height: 1px;
+  background: #e6e5eb;
+}
+
+.AddCategory {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  opacity: 1;
+  transition: all 0.3s;
+  background: #5a61e628;
+  height: 30px;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.AddCategory_Label {
+  color: #5a61e6;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.AsideResetFilters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 4px 0 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #cfced7;
+  opacity: 1;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.AsideResetFilters_Label {
+  color: #7a7a89;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 15px */
+}
+
+.AsideResetFilters__Icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: #5a62e61a;
+}

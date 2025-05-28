@@ -1,0 +1,5 @@
+.Container {
+  width: 100%;
+  height: calc(100vh - 50px); // Adjust height based on 100vh - Navbar height
+  display: flex;
+}

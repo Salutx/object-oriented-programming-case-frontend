@@ -1,0 +1,65 @@
+/* Reset geral */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset para buttons */
+button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+/* Reset para inputs, textareas e selects */
+input,
+textarea,
+select {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+}
+
+/* Reset para lists */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove underline de links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset para imagens */
+img,
+svg,
+picture,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Body básico */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

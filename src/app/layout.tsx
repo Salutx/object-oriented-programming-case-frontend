@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@/global/reset.scss";
 
 const interFont = Inter({
   variable: "--inter-font",
@@ -20,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <Navbar />
-      <body className={interFont.variable}>{children}</body>
+      <body className={interFont.variable} cz-shortcut-listen="true">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

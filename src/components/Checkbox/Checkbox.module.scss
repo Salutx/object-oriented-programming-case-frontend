@@ -1,0 +1,20 @@
+.Checkmark {
+  display: flex;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #878787;
+  transition: all 0.3s;
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.Checkmark__Checked {
+  border: 1px solid var(--checkbox-color);
+  background: var(--checkbox-color-opacity);
+}
