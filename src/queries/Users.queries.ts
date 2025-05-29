@@ -2,6 +2,7 @@ import createUser from "@/api/services/Users/createUser";
 import deleteUser from "@/api/services/Users/deleteUser";
 import getAllUsers from "@/api/services/Users/getAllUsers";
 import getUserById from "@/api/services/Users/getUserById";
+import loginUser from "@/api/services/Users/loginUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetAllUsers = () =>
@@ -22,6 +23,12 @@ export const useCreateUser = () =>
   useMutation({
     mutationFn: createUser,
     mutationKey: ["users", "createUser"],
+  });
+
+export const useLoginUser = () =>
+  useMutation({
+    mutationFn: loginUser,
+    mutationKey: ["users", "loginUser"],
   });
 
 export const useDeleteUser = () =>

@@ -1,3 +1,5 @@
+"use client";
+
 import { CatalogContextProvider } from "@/contexts/CatalogContext";
 import Styles from "./Catalog.module.scss";
 import AsideFilters from "./components/AsideFilters/AsideFilters";

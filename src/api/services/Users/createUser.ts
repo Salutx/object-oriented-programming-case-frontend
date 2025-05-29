@@ -1,9 +1,11 @@
 import LibraryApi from "@/api/LibraryApi";
-import { User, UserPayload } from "@/types/Users.types";
+import { User, UserRegisterPayload } from "@/types/Users.types";
 
-export default async function createUser(payload: UserPayload): Promise<User> {
+export default async function createUser(
+  payload: UserRegisterPayload
+): Promise<User> {
   try {
-    const response = await LibraryApi.post<User>("/users", payload);
+    const response = await LibraryApi.post<User>("/users/register", payload);
     if (response.status !== 201) {
       throw new Error("Failed to create user");
     }

@@ -1,14 +1,15 @@
 "use client";
 
-import Catalog from "@/containers/Catalog";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Catalog />
-    </QueryClientProvider>
-  );
+  const { push } = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    push("/catalogo");
+  }, [pathname, push]);
+
+  return null;
 }

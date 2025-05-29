@@ -14,7 +14,9 @@ export type IconName =
   | "window"
   | "checkmark"
   | "search"
-  | "add";
+  | "add"
+  | "eye"
+  | "eye-off"
 
 export interface IconProps {
   name: IconName;

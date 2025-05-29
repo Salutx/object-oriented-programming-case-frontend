@@ -22,7 +22,7 @@ const AsideFilters = () => {
   const categoriesCounter = getCounterFromArray(categoriesData);
 
   const handleCreateCategory = () => {
-    mutate({});
+    // mutate({});
   };
 
   const isLoading = isLoadingCategories || isPendingCategoryMutate;

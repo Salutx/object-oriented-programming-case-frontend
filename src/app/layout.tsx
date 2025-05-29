@@ -1,7 +1,7 @@
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/global/reset.scss";
+import ProvidersGroup from "./ProvidersGroup";
 
 const interFont = Inter({
   variable: "--inter-font",
@@ -22,8 +22,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={interFont.variable} cz-shortcut-listen="true">
-        <Navbar />
-        {children}
+        <ProvidersGroup>{children}</ProvidersGroup>
       </body>
     </html>
   );

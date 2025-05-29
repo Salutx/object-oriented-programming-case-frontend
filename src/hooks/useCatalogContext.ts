@@ -1,3 +1,5 @@
+'use client'
+
 import { CatalogContext } from "@/contexts/CatalogContext";
 import { useContext } from "react";
 
