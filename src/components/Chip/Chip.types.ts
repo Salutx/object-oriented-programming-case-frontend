@@ -8,4 +8,7 @@ export interface ChipProps {
   };
   mainColor?: string;
   bgOpacity?: number;
+  onClick?: () => void;
+  onDeleteChip?: () => void;
+  hasDelete?: boolean;
 }

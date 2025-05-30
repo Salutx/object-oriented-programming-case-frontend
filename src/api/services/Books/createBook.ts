@@ -1,7 +1,7 @@
 import LibraryApi from "@/api/LibraryApi";
 import { Book, BookPayload } from "@/types/Books.types";
 
-export default async function createBook(payload: BookPayload): Promise<Book> {
+export default async function createBook(payload: BookPayload & { createdById: number }): Promise<Book> {
   try {
     const response = await LibraryApi.post<Book>("/books", payload);
     if (response.status !== 201) {

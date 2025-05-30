@@ -4,7 +4,7 @@
 
 import React, { useEffect, memo } from "react";
 import { Dialog } from "@mui/material";
-import Styles from "./Overlays.module.scss";
+import Styles from "./GenericModal.module.scss";
 import useOverlayHook from "@/hooks/useOverlayHook";
 import { GenericModalProps } from "./GenericModal.types";
 

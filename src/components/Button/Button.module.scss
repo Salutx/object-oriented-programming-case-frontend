@@ -1,0 +1,39 @@
+.Button {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 1.25rem 0 1rem;
+  border-radius: 128px;
+  opacity: 1;
+  transition: all 0.3s;
+  background: #5a61e628;
+  height: 35px;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.Button_Label {
+  color: #5a61e6;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.Button__Loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}

@@ -12,6 +12,7 @@ const Icon = ({ name, size = 16 }: IconProps) => {
       loading="lazy"
       draggable={false}
       unoptimized={true}
+      color="#fff"
     />
   );
 };

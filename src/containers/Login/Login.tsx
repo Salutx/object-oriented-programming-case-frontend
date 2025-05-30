@@ -2,13 +2,14 @@
 
 import Icon from "@/components/Icon";
 import Styles from "./Login.module.scss";
-import LoginInput from "./LoginInput";
 import { useState } from "react";
 import { LoginForm, LoginSection, RegisterForm } from "./Login.types";
 import { useCreateUser, useLoginUser } from "@/queries/Users.queries";
 import { UserRegisterPayload, UserSession } from "@/types/Users.types";
 import { useLocalStorage } from "react-use";
 import { CircularProgress } from "@mui/material";
+import { useRouter } from "next/navigation";
+import UniversalInput from "@/components/UniversalInput/UniversalInput";
 
 const InitialLoginPayload: LoginForm = {
   username: "",
@@ -23,6 +24,8 @@ const InitialRegisterPayload: RegisterForm = {
 };
 
 const Login = () => {
+  const router = useRouter();
+
   const { mutate: registerUserMutate, isPending: isPendingRegister } =
     useCreateUser();
   const { mutate: loginUserMutate, isPending: isPendingLogin } = useLoginUser();
@@ -67,6 +70,7 @@ const Login = () => {
         onSuccess: (data) => {
           alert("Login efetuado com sucesso! :)");
           saveUserSession(data);
+          router.push("/catalogo");
         },
         onError: (error) => {
           alert("Ocorreu um erro ao fazer login. Tente novamente!");
@@ -135,7 +139,7 @@ const Login = () => {
         <div className={Styles.FormContent}>
           {selectedSection === "login" && (
             <div className={Styles.FormContent__Inputs}>
-              <LoginInput
+              <UniversalInput
                 label="Usuário"
                 type="text"
                 value={loginForm?.username || ""}
@@ -150,7 +154,7 @@ const Login = () => {
                   }
                 }}
               />
-              <LoginInput
+              <UniversalInput
                 label="Senha"
                 type="password"
                 value={loginForm?.password || ""}
@@ -170,7 +174,7 @@ const Login = () => {
 
           {selectedSection === "register" && (
             <div className={Styles.FormContent__Inputs}>
-              <LoginInput
+              <UniversalInput
                 label="Usuário"
                 type="text"
                 value={registerForm?.username || ""}
@@ -185,7 +189,7 @@ const Login = () => {
                   }
                 }}
               />
-              <LoginInput
+              <UniversalInput
                 label="Email"
                 type="text"
                 value={registerForm?.email || ""}
@@ -200,7 +204,7 @@ const Login = () => {
                   }
                 }}
               />
-              <LoginInput
+              <UniversalInput
                 label="Senha"
                 type="password"
                 value={registerForm?.password || ""}
@@ -215,7 +219,7 @@ const Login = () => {
                   }
                 }}
               />
-              <LoginInput
+              <UniversalInput
                 label="Confirmar Senha"
                 type="password"
                 value={registerForm?.confirmPassword || ""}

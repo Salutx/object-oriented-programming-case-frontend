@@ -16,6 +16,7 @@ const Book = ({
   disabled,
   onFavorite,
   createdAt,
+  onDelete,
 }: BookProps) => {
   const firstCategory = categories?.[0];
 
@@ -32,9 +33,15 @@ const Book = ({
           <Icon name={isFavorited ? "heart" : "heart-filled"} />
         </div>
         <div className={Styles.BookPreview__Overlay}>
-          <p className={Styles.BookPreview__Overlay_PublishedBy}>
-            Enviado por {createdAt}
-          </p>
+          <div className={Styles.BookPreview__Overlay__Footer}>
+            <p className={Styles.BookPreview__Overlay_PublishedBy}>
+              Enviado por {createdAt}
+            </p>
+
+            <button className={Styles.BookPreview__Delete} onClick={onDelete}>
+              <Icon name="trash-can-white" />
+            </button>
+          </div>
         </div>
         {imagePath && <Image src={imagePath} alt={title} fill />}
       </div>

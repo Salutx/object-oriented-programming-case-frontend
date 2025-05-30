@@ -1,11 +1,12 @@
 import { Category } from "./Categories.types";
+import { User } from "./Users.types";
 
 export interface Book {
   bookId: number;
   name: string;
   publisher: string;
   publishedIn: string;
-  createdBy: number;
+  createdBy: Omit<User, "password">;
   createdAt: string;
   categories: Category[];
   author: string;
@@ -16,5 +17,5 @@ export interface BookPayload {
   publisher: string;
   publishedIn: string;
   author: string;
-  categories: number[];
+  categoryIds: number[];
 }

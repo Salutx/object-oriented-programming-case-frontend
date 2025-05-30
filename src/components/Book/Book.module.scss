@@ -120,3 +120,24 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.BookPreview__Overlay__Footer {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.BookPreview__Delete {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+}

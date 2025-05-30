@@ -1,7 +1,7 @@
 import LibraryApi from "@/api/LibraryApi";
 
 export default async function deleteCategory(
-  categoryId: string
+  categoryId: number,
 ): Promise<void> {
   try {
     const response = await LibraryApi.delete(`/categories/${categoryId}`);

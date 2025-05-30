@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Styles from "./Login.module.scss";
-import { LoginInputProps } from "./Login.types";
+import Styles from "./UniversalInput.module.scss";
+import { UniversalInputProps } from "./UniversalInput.types";
 import Icon from "@/components/Icon";
 import clsx from "clsx";
 
-const LoginInput = ({
+const UniversalInput = ({
   label,
   onChange,
   type,
@@ -13,7 +13,8 @@ const LoginInput = ({
   name,
   required,
   onKeyDown,
-}: LoginInputProps) => {
+  sx,
+}: UniversalInputProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleTogglePasswordVisibility = () => {
@@ -23,7 +24,7 @@ const LoginInput = ({
   const inputType = type === "password" && showPassword ? "text" : type;
 
   return (
-    <div className={Styles.LoginWrapper}>
+    <div className={Styles.LoginWrapper} style={sx}>
       <p className={Styles.LoginLabel}>
         {label}
         {required && <span className={Styles.LoginRequired}>*</span>}
@@ -53,4 +54,4 @@ const LoginInput = ({
   );
 };
 
-export default LoginInput;
+export default UniversalInput;

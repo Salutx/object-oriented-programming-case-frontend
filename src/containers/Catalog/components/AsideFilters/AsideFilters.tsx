@@ -9,6 +9,8 @@ import getCounterFromArray from "@/utils/getCounterFromArray";
 import Icon from "@/components/Icon";
 import useCatalogContext from "@/hooks/useCatalogContext";
 import { useGetAllBooks } from "@/queries/Books.queries";
+import GenericModal from "@/components/GenericModal/GenericModal";
+import UploadCategoryModal from "@/components/UploadCategoryModal/UploadCategoryModal";
 
 const AsideFilters = () => {
   const { filteredCategories, handleFilterCategory, handleResetFilters } =
@@ -65,12 +67,17 @@ const AsideFilters = () => {
               );
             })}
 
-          {((!isLoading && !categoriesData) ||
-            categoriesData?.length === 0) && (
-            <button className={Styles.AddCategory}>
-              <Icon name="add" />
-              <p className={Styles.AddCategory_Label}>Criar categoria</p>
-            </button>
+          {!isLoading && (
+            <GenericModal
+              RenderController={({ onClick }) => (
+                <button className={Styles.AddButton} onClick={onClick}>
+                  <Icon name="add" />
+                  <p className={Styles.AddButton_Label}>Criar categoria</p>
+                </button>
+              )}
+            >
+              {({ onClose }) => <UploadCategoryModal onClose={onClose} />}
+            </GenericModal>
           )}
         </div>
         {/* <div className={Styles.AsideDivider} style={{ margin: "16px 0" }} /> */}

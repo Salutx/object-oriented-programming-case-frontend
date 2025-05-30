@@ -1,7 +1,10 @@
+'use client'
+
 import Catalog from "@/containers/Catalog";
+import ProtectedRoute from "../ProtectedRoute";
 
 const Catalogo = () => {
   return <Catalog />;
 };
 
-export default Catalogo;
+export default ProtectedRoute(Catalogo);

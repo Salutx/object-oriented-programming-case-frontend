@@ -5,6 +5,13 @@
   padding: 4px 8px;
   border-radius: 4px;
   width: fit-content;
+  opacity: 1;
+  transition: all 0.3s;
+  gap: 4px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .Chip_Label {

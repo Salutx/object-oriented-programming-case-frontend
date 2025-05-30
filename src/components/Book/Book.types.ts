@@ -10,4 +10,5 @@ export interface BookProps {
   disabled?: boolean;
   onFavorite?: () => void;
   createdAt?: string;
+  onDelete?: () => void;
 }

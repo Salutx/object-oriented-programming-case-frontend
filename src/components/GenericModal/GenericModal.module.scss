@@ -1,0 +1,76 @@
+.OverlayBase :global(.MuiDialog-paper) {
+  background: transparent !important;
+  max-width: fit-content !important;
+}
+
+.OverlayBackdrop {
+  backdrop-filter: blur(6px);
+  transition: all 0.3s;
+}
+
+// Modal Base
+
+// Modal
+.Modal {
+  width: 450px;
+  max-width: 450px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ModalHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem 0 1rem;
+  height: 45px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #e6e5eb;
+}
+
+.ModalHeader__Side {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ModalHeader_Title {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ModalHeader__Close {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: #f6f6f9;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.ModalFooter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  flex-shrink: 0;
+  border-top: 1px solid #e6e5eb;
+}

@@ -1,13 +1,11 @@
 "use client";
 
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   AuthContextProps,
   AuthContextProviderProps,
 } from "./AuthContext.types";
-import { useLocalStorage } from "react-use";
 import { UserSession } from "@/types/Users.types";
-import { usePathname, useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -15,28 +13,18 @@ export const AuthContext = createContext<AuthContextProps>(
 );
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const [userSession] = useLocalStorage<UserSession | null>(
-    "userSession",
-    null
-  );
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!!userSession && pathname === "/login") {
-      router.push("/catalogo");
-      return;
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession));
     }
+    setIsMounted(true);
+  }, []);
 
-    if (!userSession && pathname !== "/login") {
-      router.push("/login");
-    }
-  }, [userSession, pathname, router]);
-
-  const isOnLoginPage = pathname === "/login";
-
-  if (!userSession && !isOnLoginPage) {
+  if (!isMounted) {
     return (
       <div
         style={{

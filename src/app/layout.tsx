@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/global/reset.scss";
 import ProvidersGroup from "./ProvidersGroup";
+import { Metadata } from "next";
 
 const interFont = Inter({
   variable: "--inter-font",

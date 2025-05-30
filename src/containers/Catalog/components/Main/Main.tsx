@@ -4,17 +4,19 @@ import Book from "@/components/Book";
 import Styles from "./Main.module.scss";
 import InputSearch from "./components/InputSearch";
 import EmptyException from "@/components/EmptyException/EmptyException";
-import { useGetAllBooks } from "@/queries/Books.queries";
+import { useDeleteBook, useGetAllBooks } from "@/queries/Books.queries";
 import getCounterFromArray from "@/utils/getCounterFromArray";
 import useSearch from "@/hooks/useSearch";
 import useCatalogContext from "@/hooks/useCatalogContext";
 import { useMemo } from "react";
-import { useGetAllUsers } from "@/queries/Users.queries";
+import Icon from "@/components/Icon";
+import GenericModal from "@/components/GenericModal/GenericModal";
+import UploadBookModal from "@/components/UploadBookModal";
 
 const Main = () => {
+  const { mutate: deleteBookMutate } = useDeleteBook();
   const { filteredCategories } = useCatalogContext();
   const { data: booksData } = useGetAllBooks();
-  const { data: usersData } = useGetAllUsers();
 
   const formattedBooksData = useMemo(() => {
     return booksData?.map((book) => ({
@@ -46,6 +48,23 @@ const Main = () => {
 
   const booksCounter = getCounterFromArray(filteredBooks);
 
+  const handleDeleteBook = (bookId: number) => {
+    const confirmDelete = confirm(
+      "Tem certeza que deseja excluir este livro? Esta ação não pode ser desfeita."
+    );
+
+    if (!confirmDelete) return;
+
+    deleteBookMutate(bookId, {
+      onSuccess: () => {
+        alert("Livro excluído com sucesso!");
+      },
+      onError: () => {
+        alert("Erro ao excluir livro. Tente novamente mais tarde.");
+      },
+    });
+  };
+
   return (
     <main className={Styles.Main}>
       <div className={Styles.MainHeader}>
@@ -56,26 +75,37 @@ const Main = () => {
           <h2 className={Styles.MainHeader_Title}>Livros no catálogo</h2>
         </div>
 
-        <InputSearch
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Pesquisar por título, categoria, autor..."
-        />
+        <div className={Styles.MainHeader__Side}>
+          <GenericModal
+            RenderController={({ onClick }) => (
+              <button className={Styles.AddButton} onClick={onClick}>
+                <Icon name="upload" />
+                <p className={Styles.AddButton_Label}>Enviar livro</p>
+              </button>
+            )}
+          >
+            {({ onClose }) => <UploadBookModal onClose={onClose} />}
+          </GenericModal>
+
+          <InputSearch
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Pesquisar por título, categoria, autor..."
+          />
+        </div>
       </div>
       {filteredBooks && filteredBooks?.length > 0 && (
         <div className={Styles.MainContent}>
           {filteredBooks?.map((book, index) => {
-            const createdBy = usersData?.find(
-              (user) => user.userId === book?.createdBy
-            );
-
             return (
               <Book
                 key={index}
                 title={book?.name}
                 author={book?.author}
                 categories={book?.categories}
-                createdAt={createdBy?.name || "Desconhecido"}
+                createdAt={book?.createdBy?.name || "Desconhecido"}
+                onDelete={() => handleDeleteBook(book?.bookId)}
+                onFavorite={() => {}}
               />
             );
           })}

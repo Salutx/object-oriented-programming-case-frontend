@@ -17,6 +17,9 @@ export type IconName =
   | "add"
   | "eye"
   | "eye-off"
+  | "upload"
+  | "close"
+  | "trash-can-white";
 
 export interface IconProps {
   name: IconName;

@@ -16,7 +16,7 @@ const CategoryOption = ({
       </div>
 
       {quantity && quantity > 0 && (
-        <span className={Styles.CategoryOption_Quantity}>( {quantity} )</span>
+        <p className={Styles.CategoryOption_Quantity}>( {quantity} )</p>
       )}
     </div>
   );

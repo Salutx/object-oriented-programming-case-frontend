@@ -1,0 +1,89 @@
+.LoginWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.LoginLabel {
+  color: rgba($color: #010023, $alpha: 0.5);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  flex-shrink: 0;
+  height: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.LoginRequired {
+  color: #ff0a0a;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  flex-shrink: 0;
+  opacity: 0.5;
+  height: 12px;
+}
+
+.LoginField {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 45px;
+  flex-shrink: 0;
+  border: 1px solid #e6e5eb;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0 8px 0 0;
+  transition: all 0.3s;
+  opacity: 1;
+
+  &:hover {
+    overflow: 0.8;
+  }
+
+  &:focus-within {
+    border: 1px solid #5a62e6;
+  }
+}
+
+.LoginInput {
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  align-items: center;
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+
+  &::placeholder {
+    color: #010023;
+    opacity: 0.5;
+  }
+}
+
+.LoginShowPassword {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.3s;
+  opacity: 1;
+  background: #f6f6f9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
