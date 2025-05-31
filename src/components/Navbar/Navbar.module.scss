@@ -45,3 +45,66 @@
   font-weight: 400;
   line-height: normal;
 }
+
+// UserProfiel
+
+.UserProfile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 1rem;
+}
+
+.UserAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.UserAvatar_Label {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.UserName {
+  color: #010023;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.Exit {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 1;
+  margin-left: 4px;
+
+  &:hover {
+    background-color: #e6e5eb;
+    opacity: 0.8;
+  }
+}
+
+.Divider {
+  width: 1px;
+  height: 16px;
+  background-color: #e6e5eb;
+}

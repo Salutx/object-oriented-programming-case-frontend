@@ -6,12 +6,18 @@ import UniversalInput from "../UniversalInput/UniversalInput";
 import {
   useCreateCategory,
   useDeleteCategory,
+  useEditCategory,
   useGetAllCategories,
 } from "@/queries/Categories.queries";
 import Chip from "../Chip";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const UploadCategoryModal = ({ onClose }: UploadCategoryModalProps) => {
+const UploadCategoryModal = ({
+  onClose,
+  initialCategoryId,
+}: UploadCategoryModalProps) => {
+  const { mutate: editCategoryMutate, isPending: isPendingEdit } =
+    useEditCategory();
   const { mutate: createCategoryMutate, isPending: isPendingCreate } =
     useCreateCategory();
   const { mutate: deleteCategoryMutate, isPending: isPendingDelete } =
@@ -20,11 +26,35 @@ const UploadCategoryModal = ({ onClose }: UploadCategoryModalProps) => {
   const { data: allCategoriesData } = useGetAllCategories();
   const [categoryName, setCategoryName] = useState<string>("");
 
+  useEffect(() => {
+    if (initialCategoryId) {
+      const initialCategory = allCategoriesData?.find(
+        (category) => category.categoryId === initialCategoryId
+      );
+
+      if (initialCategory) {
+        setCategoryName(initialCategory.name);
+      }
+    }
+  }, [allCategoriesData, initialCategoryId]);
+
+  const isEditing = Boolean(initialCategoryId);
   const hasCategories = allCategoriesData && allCategoriesData.length > 0;
 
-  const alreadyHasCategory = allCategoriesData?.some(
-    (category) => category.name.toLowerCase() === categoryName.toLowerCase()
-  );
+  const alreadyHasCategory =
+    !isEditing &&
+    allCategoriesData?.some(
+      (category) => category.name.toLowerCase() === categoryName.toLowerCase()
+    );
+
+  const isEqualToInitialCategory =
+    isEditing && allCategoriesData
+      ? allCategoriesData.some(
+          (category) =>
+            category.categoryId === initialCategoryId &&
+            category.name.toLowerCase() === categoryName.toLowerCase()
+        )
+      : false;
 
   const handleChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
@@ -32,6 +62,25 @@ const UploadCategoryModal = ({ onClose }: UploadCategoryModalProps) => {
 
   const handleConfirm = () => {
     if (categoryName.trim() === "") return;
+
+    if (isEditing) {
+      editCategoryMutate(
+        { categoryId: initialCategoryId!, name: categoryName.trim() },
+        {
+          onSuccess: () => {
+            setCategoryName("");
+            alert("Categoria atualizada com sucesso!");
+          },
+          onError: (error) => {
+            console.log("error", error);
+            alert("Erro ao atualizar categoria! Tente novamente.");
+          },
+        }
+      );
+
+      return;
+    }
+
     createCategoryMutate(
       { name: categoryName.trim() },
       {
@@ -61,23 +110,28 @@ const UploadCategoryModal = ({ onClose }: UploadCategoryModalProps) => {
     });
   };
 
-  const isLoading = isPendingCreate || isPendingDelete;
+  const isLoading = isPendingCreate || isPendingDelete || isPendingEdit;
 
   return (
     <BaseModal
       onClose={onClose}
-      title="Cadastrar categoria"
+      title={isEditing ? "Editar categoria" : "Cadastrar categoria"}
       onConfirm={handleConfirm}
       disableConfirm={
-        alreadyHasCategory || categoryName.trim() === "" || isLoading
+        alreadyHasCategory ||
+        categoryName.trim() === "" ||
+        isLoading ||
+        isEqualToInitialCategory
       }
-      confirmLabel="Confimar cadastro"
+      confirmLabel={isEditing ? "Confirmar edição" : "Confimar cadastro"}
       headerIcon="category"
       isLoadingConfirm={isLoading}
       confirmWidth={130}
     >
       <div className={Styles.Upload}>
-        <h3 className={Styles.Upload_Title}>Registre uma nova categoria</h3>
+        <h3 className={Styles.Upload_Title}>
+          {!isEditing ? "Registre uma nova categoria" : "Atualize a categoria"}
+        </h3>
         <div className={Styles.UploadContent}>
           <div className={Styles.UploadRow}>
             <UniversalInput

@@ -17,12 +17,17 @@ const Book = ({
   onFavorite,
   createdAt,
   onDelete,
+  onEdit,
 }: BookProps) => {
   const firstCategory = categories?.[0];
 
   return (
-    <button className={Styles.Book} onClick={onClick} disabled={disabled}>
-      <div className={Styles.BookPreview}>
+    <div className={Styles.Book}>
+      <button
+        className={Styles.BookPreview}
+        onClick={onClick}
+        disabled={disabled}
+      >
         <div
           className={clsx(
             Styles.BookFavorite,
@@ -38,13 +43,18 @@ const Book = ({
               Enviado por {createdAt}
             </p>
 
-            <button className={Styles.BookPreview__Delete} onClick={onDelete}>
-              <Icon name="trash-can-white" />
-            </button>
+            <div className={Styles.BookPreview__Actions}>
+              <div className={Styles.BookPreview__Action} onClick={onEdit}>
+                <Icon name="edit-white" />
+              </div>
+              <div className={Styles.BookPreview__Action} onClick={onDelete}>
+                <Icon name="trash-can-white" />
+              </div>
+            </div>
           </div>
         </div>
         {imagePath && <Image src={imagePath} alt={title} fill />}
-      </div>
+      </button>
       <div className={Styles.BookContent}>
         <div className={Styles.BookContent__Category}>
           <Chip
@@ -57,11 +67,15 @@ const Book = ({
           )}
         </div>
         <div className={Styles.BookContent__Infos}>
-          <h1 className={Styles.BookContent_Title}>{title}</h1>
-          <p className={Styles.BookContent_Author}>{author}</p>
+          <h1 className={Styles.BookContent_Title} title={title}>
+            {title}
+          </h1>
+          <p className={Styles.BookContent_Author} title={author}>
+            {author}
+          </p>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

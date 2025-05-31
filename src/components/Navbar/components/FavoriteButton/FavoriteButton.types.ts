@@ -5,4 +5,5 @@ export interface FavoriteButtonProps {
   label?: string;
   displayHeart?: boolean;
   sx?: React.CSSProperties;
+  isSelected?: boolean;
 }

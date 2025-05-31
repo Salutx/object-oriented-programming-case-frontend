@@ -1,7 +1,5 @@
-import { UserSession } from "@/types/Users.types";
-
 export interface AuthContextProps {
-  userSession?: UserSession | null;
+  userSession?: string | null;
 }
 
 export interface AuthContextProviderProps {

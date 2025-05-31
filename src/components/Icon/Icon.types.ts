@@ -19,7 +19,10 @@ export type IconName =
   | "eye-off"
   | "upload"
   | "close"
-  | "trash-can-white";
+  | "trash-can-white"
+  | "exit"
+  | "edit"
+  | "edit-white";
 
 export interface IconProps {
   name: IconName;

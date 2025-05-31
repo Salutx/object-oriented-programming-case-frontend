@@ -48,9 +48,24 @@
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .BookFavorite {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.822);
+  transition: all 0.3s;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -60,6 +75,7 @@
 
   &:hover {
     opacity: 0.8;
+    transform: scale(1.1)
   }
 }
 
@@ -90,6 +106,10 @@
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .BookContent_Author {
@@ -126,18 +146,31 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  overflow: hidden;
+  gap: 8px;
 }
 
-.BookPreview__Delete {
+.BookPreview__Actions {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 0.5rem;
+}
+
+.BookPreview__Action {
   width: 32px;
   height: 32px;
   background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s;
   border-radius: 50%;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: scale(1.1);
+    cursor: pointer;
   }
 }

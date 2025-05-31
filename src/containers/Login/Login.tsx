@@ -5,11 +5,11 @@ import Styles from "./Login.module.scss";
 import { useState } from "react";
 import { LoginForm, LoginSection, RegisterForm } from "./Login.types";
 import { useCreateUser, useLoginUser } from "@/queries/Users.queries";
-import { UserRegisterPayload, UserSession } from "@/types/Users.types";
-import { useLocalStorage } from "react-use";
+import { UserRegisterPayload } from "@/types/Users.types";
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import UniversalInput from "@/components/UniversalInput/UniversalInput";
+import { useUserSessionMutation } from "@/hooks/useUserSession";
 
 const InitialLoginPayload: LoginForm = {
   username: "",
@@ -36,11 +36,7 @@ const Login = () => {
     InitialRegisterPayload
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, saveUserSession] = useLocalStorage<UserSession | null>(
-    "userSession",
-    null
-  );
+  const { mutate: userSessionMutate } = useUserSessionMutation();
 
   const handleSectionChange = (section: LoginSection) => {
     setSelectedSection(section);
@@ -69,8 +65,8 @@ const Login = () => {
       loginUserMutate(loginForm, {
         onSuccess: (data) => {
           alert("Login efetuado com sucesso! :)");
-          saveUserSession(data);
-          router.push("/catalogo");
+          userSessionMutate(JSON.stringify(data));
+          router.replace("/catalogo");
         },
         onError: (error) => {
           alert("Ocorreu um erro ao fazer login. Tente novamente!");

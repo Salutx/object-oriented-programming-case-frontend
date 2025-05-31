@@ -12,11 +12,17 @@ import { useMemo } from "react";
 import Icon from "@/components/Icon";
 import GenericModal from "@/components/GenericModal/GenericModal";
 import UploadBookModal from "@/components/UploadBookModal";
+import {
+  useFavoriteBookMutation,
+  useFavoriteBookQuery,
+} from "@/hooks/useFavoriteBook";
 
 const Main = () => {
   const { mutate: deleteBookMutate } = useDeleteBook();
-  const { filteredCategories } = useCatalogContext();
+  const { filteredCategories, filteredByFavorites } = useCatalogContext();
   const { data: booksData } = useGetAllBooks();
+  const { mutate: favoriteBooksMutate } = useFavoriteBookMutation();
+  const { data: favoriteBooksData } = useFavoriteBookQuery();
 
   const formattedBooksData = useMemo(() => {
     return booksData?.map((book) => ({
@@ -34,17 +40,29 @@ const Main = () => {
     formattedBooksData
   );
 
-  const filteredBooks = useMemo(() => {
+  const filteredBooksByCategories = useMemo(() => {
     if (!filteredCategories || filteredCategories.length === 0)
       return filteredOptions;
 
-    return filteredOptions.filter((book) => {
+    const filteredByCategories = filteredOptions.filter((book) => {
       if (!book?.categories || book?.categories.length === 0) return false;
       return book?.categories.some((category) =>
         filteredCategories.includes(category.categoryId)
       );
     });
+
+    return filteredByCategories;
   }, [filteredCategories, filteredOptions]);
+
+  const filteredBooks = useMemo(() => {
+    if (filteredByFavorites) {
+      return filteredBooksByCategories.filter((book) =>
+        favoriteBooksData?.includes(book?.bookId)
+      );
+    }
+
+    return filteredBooksByCategories;
+  }, [filteredByFavorites, filteredBooksByCategories, favoriteBooksData]);
 
   const booksCounter = getCounterFromArray(filteredBooks);
 
@@ -63,6 +81,10 @@ const Main = () => {
         alert("Erro ao excluir livro. Tente novamente mais tarde.");
       },
     });
+  };
+
+  const handleFavoriteBook = (bookId: number) => {
+    favoriteBooksMutate(bookId);
   };
 
   return (
@@ -98,15 +120,33 @@ const Main = () => {
         <div className={Styles.MainContent}>
           {filteredBooks?.map((book, index) => {
             return (
-              <Book
-                key={index}
-                title={book?.name}
-                author={book?.author}
-                categories={book?.categories}
-                createdAt={book?.createdBy?.name || "Desconhecido"}
-                onDelete={() => handleDeleteBook(book?.bookId)}
-                onFavorite={() => {}}
-              />
+              <GenericModal
+                key={book?.bookId || index}
+                RenderController={({ onClick }) => {
+                  const isFavorited = favoriteBooksData?.includes(book?.bookId);
+
+                  return (
+                    <Book
+                      key={index}
+                      title={book?.name}
+                      author={book?.author}
+                      categories={book?.categories}
+                      createdAt={book?.createdBy?.name || "Desconhecido"}
+                      onDelete={() => handleDeleteBook(book?.bookId)}
+                      onFavorite={() => handleFavoriteBook(book?.bookId)}
+                      onEdit={onClick}
+                      isFavorited={isFavorited}
+                    />
+                  );
+                }}
+              >
+                {({ onClose }) => (
+                  <UploadBookModal
+                    onClose={onClose}
+                    initialBookId={book?.bookId}
+                  />
+                )}
+              </GenericModal>
             );
           })}
         </div>

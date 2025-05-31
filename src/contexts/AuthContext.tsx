@@ -1,30 +1,41 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect } from "react";
 import {
   AuthContextProps,
   AuthContextProviderProps,
 } from "./AuthContext.types";
-import { UserSession } from "@/types/Users.types";
 import { CircularProgress } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { useUserSessionQuery } from "@/hooks/useUserSession";
 
 export const AuthContext = createContext<AuthContextProps>(
   {} as AuthContextProps
 );
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [userSession, setUserSession] = useState<UserSession | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const { replace } = useRouter();
+  const { data: userSession, isLoading } = useUserSessionQuery();
+
+  const handleCheckIfUserCanLogin = useCallback(async () => {
+    const session = userSession;
+
+    if (!session) {
+      return;
+    }
+
+    const parsedSession = JSON.parse(session);
+
+    if (!!parsedSession) {
+      replace("/catalogo");
+    }
+  }, [replace, userSession]);
 
   useEffect(() => {
-    const storedSession = localStorage.getItem("userSession");
-    if (storedSession) {
-      setUserSession(JSON.parse(storedSession));
-    }
-    setIsMounted(true);
-  }, []);
+    handleCheckIfUserCanLogin();
+  }, [handleCheckIfUserCanLogin]);
 
-  if (!isMounted) {
+  if (isLoading) {
     return (
       <div
         style={{

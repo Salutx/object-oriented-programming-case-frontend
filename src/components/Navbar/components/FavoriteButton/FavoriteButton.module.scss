@@ -2,7 +2,25 @@
   gap: 8px;
   display: flex;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
+  height: 100%;
+  opacity: 0.6;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.FavoriteButton_Selected {
+  opacity: 1;
+  border-bottom: 1px solid #f96389 !important;
 }
 
 .FavoriteButton_Label {

@@ -10,3 +10,8 @@ export interface Category {
 export interface CategoryPayload {
   name: string;
 }
+
+export interface CategoryUpdatePayload {
+  name: string;
+  categoryId: number;
+}

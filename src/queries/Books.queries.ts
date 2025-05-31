@@ -2,8 +2,10 @@ import createBook from "@/api/services/Books/createBook";
 import deleteBook from "@/api/services/Books/deleteBook";
 import getAllBooks from "@/api/services/Books/getAllBooks";
 import getBookById from "@/api/services/Books/getBookById";
+import updateBook from "@/api/services/Books/updateBook";
+import { useUserSessionQuery } from "@/hooks/useUserSession";
 import { BookPayload } from "@/types/Books.types";
-import { User } from "@/types/Users.types";
+import { User, UserSession } from "@/types/Users.types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "react-use";
 
@@ -20,6 +22,29 @@ export const useGetBookById = () =>
     mutationFn: getBookById,
     mutationKey: ["getBookById"],
   });
+
+export const useEditBook = () => {
+  const queryClient = useQueryClient();
+
+  const { data: userSession } = useUserSessionQuery();
+  const parsedUserSession = userSession
+    ? (JSON.parse(userSession) as UserSession)
+    : null;
+
+  const userId = parsedUserSession?.userId;
+
+  if (!userId) {
+    throw new Error("User ID is required to edit a Book.");
+  }
+
+  return useMutation({
+    mutationFn: updateBook,
+    mutationKey: ["books", "editBook"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+    },
+  });
+};
 
 export const useCreateBook = () => {
   const [userSession] = useLocalStorage<User | null>("userSession", null);

@@ -19,3 +19,12 @@ export interface BookPayload {
   author: string;
   categoryIds: number[];
 }
+
+export interface BookUpdatePayload {
+  name: string;
+  publisher: string;
+  publishedIn: string;
+  author: string;
+  categoryIds: number[];
+  bookId: number;
+}
